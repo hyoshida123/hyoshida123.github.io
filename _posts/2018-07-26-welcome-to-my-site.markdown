@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title:  "Hello World, Welcome to My Website!"
 date:   2018-07-26 20:55:33 -0700
 categories: hello_world
