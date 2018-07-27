@@ -1,6 +1,7 @@
 ---
+layout: page
 title: Projects
-layout: default
+permalink: /projects/
 ---
 
 Work in progress.
