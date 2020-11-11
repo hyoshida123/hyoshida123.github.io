@@ -3,4 +3,5 @@ layout: page
 title:  "Hello World, Welcome to My Website!"
 date:   2018-07-26 20:55:33 -0700
 ---
-Hello World, welcome to my website! This is my first post using Jekyll. I am thinking to share notes about programming and CS for myself here. I am still a beginner. I might put wrong information on the notes. When I do, I would appreciate it if you correct me thorough an email. 
+Hello World, welcome to my website!
+初めての投稿です。最近学んだことなど色々投稿していこうと思います。
