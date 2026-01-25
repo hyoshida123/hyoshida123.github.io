@@ -4,4 +4,6 @@ title: About
 permalink: /about/
 ---
 
-I am an undergraduate student who studies Electrical Engineering and Computer Science at UC Berkeley. 
+Data Engineer at a startup in Japan.
+
+日本のスタートアップでデータエンジニアをしています。 
