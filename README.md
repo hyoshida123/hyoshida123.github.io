@@ -1,11 +1,25 @@
 # hyoshida123.github.io
 
-Personal website. 
+Personal website.
 
-Live websites at https://hyoshida123.github.io/ 
+Live websites at https://hyoshida123.github.io/
 
-__Build Locally__
-`jekyll build`
+## Setup
 
-__Run Locally__
-`jekyll serve`
+```bash
+# Install gems locally (first time only)
+bundle config set --local path 'vendor/bundle'
+bundle install
+```
+
+## Build Locally
+
+```bash
+bundle exec jekyll build
+```
+
+## Run Locally
+
+```bash
+bundle exec jekyll serve
+```
