@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const formatDate = (d: Date) =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+---
+
+<Base title="Blog" description="Hideaki Yoshida のブログ記事一覧。">
+  <div class="post-header reveal">
+    <h1>Blog</h1>
+  </div>
+  <ul class="post-list reveal" style="--d: 0.1s">
+    {
+      posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.id}/`}>
+            <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+            <span class="post-title">{post.data.title}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Base>

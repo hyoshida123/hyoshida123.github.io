@@ -1,8 +1,8 @@
 ---
-layout: page
 title: データエンジニアが明日から使える関数型プログラミングの設計原則
-date: 2026-01-25 21:00:00
-categories: functional_programming
+date: 2026-01-25
+lang: ja
+description: Functional Programming in Scala から得た知見を、データエンジニアが明日から設計やコードレビューで使える形にまとめました。
 ---
 This is a memo for myself using Claude.
 

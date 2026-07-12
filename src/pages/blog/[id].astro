@@ -1,0 +1,27 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const d = post.data.date;
+const formatted = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+---
+
+<Base title={post.data.title} description={post.data.description} lang={post.data.lang}>
+  <article>
+    <header class="post-header reveal">
+      <h1>{post.data.title}</h1>
+      <time datetime={d.toISOString()}>{formatted}</time>
+    </header>
+    <div class="prose reveal" style="--d: 0.1s">
+      <Content />
+    </div>
+  </article>
+</Base>

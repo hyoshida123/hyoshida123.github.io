@@ -1,0 +1,82 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: string;
+}
+
+const SITE_NAME = 'Hideaki Yoshida';
+const DEFAULT_DESCRIPTION =
+  'Software Engineer — Data Platform / ETL. データ基盤とETLパイプラインについて書いています。';
+
+const { title, description = DEFAULT_DESCRIPTION, lang = 'ja' } = Astro.props;
+const pageTitle = title ? `${title} — ${SITE_NAME}` : SITE_NAME;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const currentPath = Astro.url.pathname;
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:locale" content="ja_JP" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title={SITE_NAME} href="/feed.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <ClientRouter />
+    <script
+      data-goatcounter="https://hyoshida123.goatcounter.com/count"
+      async
+      src="https://gc.zgo.at/count.js"
+      is:inline></script>
+    <script
+      src="https://analytics.ahrefs.com/analytics.js"
+      data-key="rHZRdnbDe96toffwY19gaA"
+      async
+      is:inline></script>
+  </head>
+  <body>
+    <div class="glow" aria-hidden="true"></div>
+    <header class="site-header">
+      <div class="wrapper">
+        <a class="brand" href="/">Hideaki Yoshida</a>
+        <nav class="site-nav">
+          <a href="/blog/" aria-current={currentPath.startsWith('/blog') ? 'page' : undefined}
+            >Blog</a
+          >
+          <a href="/about/" aria-current={currentPath.startsWith('/about') ? 'page' : undefined}
+            >About</a
+          >
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrapper">
+        <slot />
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="wrapper">
+        <span>© {year} Hideaki Yoshida</span>
+        <span class="social">
+          <a href="https://github.com/hyoshida123">GitHub</a>
+          <a href="https://www.linkedin.com/in/hyoshida123/">LinkedIn</a>
+          <a href="/feed.xml">RSS</a>
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>

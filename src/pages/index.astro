@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const recent = posts.slice(0, 3);
+
+const formatDate = (d: Date) =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+---
+
+<Base>
+  <section class="hero">
+    <h1 class="reveal">Hideaki Yoshida</h1>
+    <p class="role reveal" style="--d: 0.08s">Software Engineer — Data Platform / ETL</p>
+    <p class="bio reveal" lang="ja" style="--d: 0.16s">
+      東京を拠点に、データ基盤とETLパイプラインの設計・構築・運用をしています。
+    </p>
+    <p class="bio reveal" lang="en" style="--d: 0.24s">
+      Software engineer based in Tokyo, designing, building, and operating data platforms and ETL
+      pipelines.
+    </p>
+    <div class="links reveal" style="--d: 0.32s">
+      <a href="https://github.com/hyoshida123">GitHub</a>
+      <a href="https://www.linkedin.com/in/hyoshida123/">LinkedIn</a>
+    </div>
+  </section>
+
+  <section class="reveal" style="--d: 0.4s">
+    <h2 class="section-title">最近の投稿</h2>
+    <ul class="post-list">
+      {
+        recent.map((post) => (
+          <li>
+            <a href={`/blog/${post.id}/`}>
+              <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+              <span class="post-title">{post.data.title}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <a class="all-posts-link" href="/blog/">すべての投稿 →</a>
+  </section>
+</Base>
